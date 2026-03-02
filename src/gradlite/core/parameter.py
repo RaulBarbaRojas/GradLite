@@ -25,18 +25,21 @@ class Parameter:
     """
 
     def __init__(self, value: int | float,
+                 label: str | None = None,
                  _prev: tuple['Parameter', ...] | None = None,
                  _op: str | Operation = Operation.MANUAL_CREATION) -> None:
         """Creates a new `Parameter` instance.
 
         :param value: The value of the parameter.
         will be extracted from it (ignoring user-provided args).
+        :param label: The parameter's name (if any), defaults to `None`
         :param _prev: The previous parameters that led to the creation
-        of the parameter (if any), defaults to None
+        of the parameter (if any), defaults to `None`
         :param _op: The operation that led to the creation of the
         parameter (if any), defaults to `Operation.MANUAL_CREATION`
         """
         self.value = value
+        self.label = label
         self._prev = set(_prev if _prev is not None else tuple())
         self._op = _op
 
